@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="zh-CN"><head><meta charset="UTF-8">
+<title>机器人作战OS · 控制台</title>
+<style>
+  body { margin:0; background:#F3EFE7; font-family:"PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif; padding:28px 20px 40px; }
+  .wrap { max-width:1280px; margin:0 auto; }
+  .kicker { text-align:center; font-size:13px; letter-spacing:5px; color:#B45309; font-weight:700; }
+  h1 { text-align:center; font-size:30px; margin:8px 0 10px; color:#141414; }
+  .chips { display:flex; justify-content:center; gap:10px; flex-wrap:wrap; margin-bottom:16px; }
+  .chip { background:#232323; color:#E8B84B; font-size:13px; font-weight:700; border-radius:16px; padding:5px 16px; }
+  .chip.light { background:#fff; color:#5F5847; border:1px solid #E3DCCB; }
+  .band { background:#fff; border:1.5px solid #E3DCCB; border-radius:12px; padding:12px 18px; font-size:13.5px; line-height:1.7; color:#4A4436; margin-bottom:14px; }
+  .band .h { font-weight:800; font-size:14.5px; margin-right:10px; }
+  .band.okline { border-left:4px solid #0F6B62; } .band.okline .h { color:#0F6B62; }
+  .band.late { border-left:4px solid #A03A2A; } .band.late .h { color:#A03A2A; }
+  .band.idle { border-left:4px solid #C4BBA6; } .band.idle .h { color:#8A8270; }
+  .spine { display:flex; gap:8px; margin-bottom:14px; }
+  .sp { flex:1; background:#fff; border:1.5px solid #E3DCCB; border-radius:10px; padding:9px 10px; }
+  .sp .sp-id { font-size:12px; font-weight:800; color:#B45309; }
+  .sp .sp-w { font-size:11px; color:#8A8270; }
+  .sp .sp-n { font-size:12.5px; font-weight:700; color:#232323; margin-top:2px; line-height:1.4; }
+  .sp.cur { background:#FDF3DC; border-color:#B45309; border-width:2px; }
+  .sp.done { background:#EDF6F5; border-color:#9CC8C2; } .sp.done .sp-id, .sp.done .sp-n { color:#0F6B62; }
+  .sp.todo { opacity:.62; }
+  h3 { font-size:15px; font-weight:800; color:#141414; margin:18px 0 8px; }
+  h3::before { content:"▮"; color:#B45309; margin-right:7px; font-size:12px; }
+  .gates { display:grid; grid-template-columns:repeat(3,1fr); gap:10px; }
+  .gate { background:#fff; border:1.5px solid #E3DCCB; border-radius:10px; padding:10px 13px; font-size:12.5px; line-height:1.55; }
+  .gate.ok { border-color:#9CC8C2; background:#EDF6F5; } .gate.ok .gst { color:#0F6B62; font-weight:800; }
+  .gate.bad { border-color:#DFA79B; background:#FBEDEA; } .gate.bad .gst { color:#A03A2A; font-weight:800; }
+  .gate.pend { opacity:.75; } .gate.pend .gst { color:#8A8270; }
+  .gid { font-weight:800; color:#B45309; font-size:13px; }
+  .gchk { font-weight:700; color:#232323; margin:2px 0; }
+  .gex { color:#8A8270; font-size:11.5px; }
+  .gwk { margin-top:4px; font-size:11.5px; color:#5F5847; }
+  .warn { color:#A03A2A; font-weight:700; }
+  .duo { display:grid; grid-template-columns:1fr 1fr; gap:14px; align-items:start; }
+  .card { background:#fff; border:1.5px solid #E3DCCB; border-radius:12px; padding:13px 16px; }
+  .card h4 { font-size:14px; margin:0 0 9px; color:#141414; }
+  .act { font-size:13px; line-height:1.6; color:#333; padding:5px 0; border-bottom:1px dashed #EFEADB; }
+  .act:last-child { border-bottom:none; }
+  .aid { display:inline-block; background:#FCEBC8; color:#9A6A00; font-weight:700; font-size:11.5px; border-radius:6px; padding:0 7px; margin-right:8px; }
+  .strip-red { background:#FBEDEA; color:#8C3A2E; border:1px solid #DFA79B; border-radius:8px; padding:6px 10px; font-size:12.5px; margin-bottom:6px; }
+  .muted { color:#A39A87; font-size:12.5px; }
+  .ev { font-size:12px; line-height:1.6; padding:4px 0; border-bottom:1px dashed #EFEADB; color:#4A4436; }
+  .ev:last-child { border-bottom:none; }
+  .ets { color:#A39A87; font-family:Menlo,monospace; font-size:11px; margin-right:7px; }
+  .ety { display:inline-block; font-weight:800; font-size:10.5px; border-radius:6px; padding:0 7px; margin-right:7px; background:#EFE9DB; color:#5B4A22; }
+  .ev-gate_pass .ety { background:#D8ECEA; color:#0F6B62; }
+  .ev-gate_fail .ety, .ev-deviation .ety { background:#FBEDEA; color:#A03A2A; }
+  .ev-learning .ety { background:#FCEBC8; color:#9A6A00; }
+  .lr { font-size:12.5px; line-height:1.6; padding:5px 0; border-bottom:1px dashed #EFEADB; }
+  .lr:last-child { border-bottom:none; }
+  .lr .lid { font-weight:800; color:#B45309; margin-right:6px; }
+  .st-proposed { color:#9A6A00; font-weight:700; } .st-applied { color:#0F6B62; font-weight:700; }
+  .cl { font-size:12.5px; line-height:1.7; color:#4A4436; }
+  .cl b { color:#B45309; }
+  .foot { text-align:center; margin-top:22px; font-size:11.5px; color:#A39A87; }
+</style></head>
+<body><div class="wrap">
+<div class="kicker">机器人公司作战图 · 执行层</div>
+<h1>机器人作战OS · 控制台</h1>
+<div class="chips"><span class="chip">playbook v1.0.0</span><span class="chip light">状态：pending</span><span class="chip light">阶段：P0 W1–2</span></div>
+<div class="band idle"><span class="h">⏱ 尚未开工</span>执行 <b>evolve.py start</b> 开启 T0，之后系统按周追踪 24 周计划的实际进度与滞后。</div>
+<h3>24 周主轴 · 阶段进度</h3>
+<div class="spine"><div class="sp cur"><div class="sp-id">P0</div><div class="sp-w">W1–2</div><div class="sp-n">启动与规格冻结</div></div><div class="sp todo"><div class="sp-id">P1</div><div class="sp-w">W3–8</div><div class="sp-n">三线并行（结构 / 电子 / RL）</div></div><div class="sp todo"><div class="sp-id">P2</div><div class="sp-w">W9–12</div><div class="sp-n">EVT 工程验证（15–20 台）</div></div><div class="sp todo"><div class="sp-id">P3</div><div class="sp-w">W13–16</div><div class="sp-n">复模小批 · 产线 · 认证（50–100 台）</div></div><div class="sp todo"><div class="sp-id">P4</div><div class="sp-w">W17–18</div><div class="sp-n">众筹预售与财务对账</div></div><div class="sp todo"><div class="sp-id">P5</div><div class="sp-w">W19–24</div><div class="sp-n">交付 · 灰度 · 换票</div></div><div class="sp todo"><div class="sp-id">P6</div><div class="sp-w">W25+</div><div class="sp-n">世代衔接 → 终局</div></div></div>
+<h3>验收门 · 九道（判据与返工支路见 playbook）</h3>
+<div class="gates"><div class="gate pend"><div class="gid">G1</div><div class="gchk">新构型在仿真里学会行走</div><div class="gst">· 待验收</div><div class="gex">未过 → 调奖励函数 / 加域随机化（单卡 4090 · 1–2h/策略）</div><div class="gwk"></div></div><div class="gate pend"><div class="gid">P1-PCB</div><div class="gchk">PCB 一次点亮率 ≥70% 且 2–3 轮收敛</div><div class="gst">· 待验收</div><div class="gex">未过 → 改版重投（72h 快板循环）</div><div class="gwk"></div></div><div class="gate pend"><div class="gid">P1-PWR</div><div class="gchk">整机上电即通</div><div class="gst">· 待验收</div><div class="gex">未过 → 排阻塞 · 分派回结构/电子/RL 线</div><div class="gwk"></div></div><div class="gate pend"><div class="gid">G2</div><div class="gchk">阻塞级=0 且传播视频已发布</div><div class="gst">· 待验收</div><div class="gex">未过 → 8D 围堵 24h · 改板/改设计 → 重投快板</div><div class="gwk"></div></div><div class="gate pend"><div class="gid">G3-1</div><div class="gchk">FPY ≥90%</div><div class="gst">· 待验收</div><div class="gex">未过 → 产线返工：舵机到货分档筛选＋老化烧机（1 元省 3–5 元）· 执行器双源切换</div><div class="gwk"></div></div><div class="gate pend"><div class="gid">G3-2</div><div class="gchk">认证受理</div><div class="gst">· 待验收</div><div class="gex">未过 → 补件 / 补测试</div><div class="gwk"></div></div><div class="gate pend"><div class="gid">UE</div><div class="gchk">单位经济成立：小批 BOM ¥2,000–2,400/台 → 预售毛利 30–40%</div><div class="gst">· 待验收</div><div class="gex">未过 → 重谈 BOM（国产舵机一换 −40~−50%）或调配置/定价</div><div class="gwk"></div></div><div class="gate pend"><div class="gid">G4</div><div class="gchk">预售锁量 ≥1,000 台</div><div class="gst">· 待验收</div><div class="gex">未过 → 复盘定价/渠道/卖点 · 缓冲周 W23–24 机动吸收</div><div class="gwk"></div></div><div class="gate pend"><div class="gid">SD</div><div class="gchk">双线合计销量 ≥1,000 台</div><div class="gst">· 待验收</div><div class="gex">未过 → 继续售卖 · 复购 · 渠道扩量</div><div class="gwk"></div></div><div class="gate pend"><div class="gid">END</div><div class="gchk">终局四要素逐代点亮（连续经营 · 无终点）</div><div class="gst">· 待验收</div><div class="gex">未过 → </div><div class="gwk"></div></div></div>
+<div class="duo" style="margin-top:16px">
+  <div class="card"><h4>当前阶段动作 · P0 W1–2 启动与规格冻结</h4><div class="act"><span class="aid">P0.1</span>T0 当天：建 git 仓库 · 复制 BOM 账本为 v1 · 写完 1 页 PRD（给谁 · 解决什么 · ¥ · 几个 DoF）</div><div class="act"><span class="aid">P0.2</span>本周四件事：下单 15 颗 Feetech STS3215 样品（现货）· 跑通官方 rl-src MuJoCo 仿真 · ToF/摄像头交期询价 · 快板厂开户</div><div class="act"><span class="aid">P0.3</span>规格四线同步：构型 DoF 图＋关节力矩表（双足桌面 1.0×）｜ 主控 RK3566（0.8 TOPS 实测够）＋ 电池 NP-F550 2S 带 UN38.3 ｜ 锁目标成本＋长周期三件询价下单（模具除外）｜ minisign 签名体系就定</div></div>
+  <div class="card"><h4>未过门积压（按返工支路处理）</h4><div class="muted">无——当前没有被门卡住的事项</div></div>
+</div>
+<div class="duo" style="margin-top:14px">
+  <div class="card"><h4>事件流 · 最近 15 条</h4><div class="muted">暂无事件</div></div>
+  <div class="card"><h4>学习提案（持续学习的原料）</h4><div class="muted">暂无——每次复盘至少提炼一条，进化才有时有料</div></div>
+</div>
+<h3>playbook 变更日志 · 流程图为什么长这样</h3>
+<div class="card"><div class="cl"><div>· <b>v1.0.0</b>（2026-09-15）初版固化：从作战执行流程图精细版转录为机器可读手册（7 阶段 · 9 道验收门 · 6 条护栏 · 章鱼侧线）</div></div></div>
+<div class="band" style="margin-top:16px"><span class="h" style="color:#A03A2A">全程护栏</span>安全层四件套：唯一总线写句柄 · NaN 拒绝 · 行程钳位 · 跌倒软着陆 ｜ 认证：UN38.3 · 3C · FCC·CE（预算合计 ¥150–400k【估】） ｜ A/B 双分区 OTA ＋ minisign 签名（自研四件套 1–2 人月 · 云成本 ≈0） ｜ 零位标定 · 配对 PIN · 设备身份派生 · 整机老化（工厂化软件工序） ｜ 财务两把锁：W1 锁目标成本 · W18 复盘对账（核算 ±10%） ｜ 长周期料 W1 下单：模具（推迟至锁量后）· ToF · 舵机量产（各 8–12 周）</div>
+<div class="band"><span class="h">关键锚点</span>首批交付: ≈W22–24（6 个月内） ｜ 章鱼线首批: ≈W30 ｜ 小批BOM: ¥2,000–2,400/台 ｜ 预售毛利: 30–40% ｜ 速通NRE: ≈¥110–160 万（人力 ¥75–100 万 ＋ 现金 ¥25–55 万） ｜ 回本量: 1,000–1,500 台 ｜ 预售锚点: $399 ≈ ¥3,500 到手 ｜ 硬模: ¥50–80k/副 · 25–35 天（改模 12–15 天） ｜ 复模: ~500 元/模 ｜ 训练算力: 单卡 4090 · 1–2h/策略</div>
+<div class="foot">生成于 2026-09-15 11:48:00 ｜ 每次执行/复盘命令自动刷新 ｜ 每周一 09:00 自动化复盘进化</div>
+</div></body></html>
