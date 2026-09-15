@@ -56,6 +56,18 @@
   .cl { font-size:12.5px; line-height:1.7; color:#4A4436; }
   .cl b { color:#B45309; }
   .foot { text-align:center; margin-top:22px; font-size:11.5px; color:#A39A87; }
+  .sig { font-size:12px; line-height:1.55; padding:4px 0; border-bottom:1px dashed #EFEADB; }
+  .sig:last-child { border-bottom:none; }
+  .sig .tag { display:inline-block; font-weight:800; font-size:10.5px; border-radius:6px; padding:0 7px; margin-right:7px; background:#EFF4FA; color:#3D5A8A; }
+  .sig .src { color:#A39A87; font-size:11px; margin-left:6px; }
+  .vbadge { display:inline-block; font-weight:800; border-radius:8px; padding:2px 12px; font-size:13px; margin-bottom:8px; }
+  .vpass { background:#EDF6F5; color:#0F6B62; } .vwarn { background:#FDF3DC; color:#9A6A00; } .vfail { background:#FBEDEA; color:#A03A2A; }
+  .vi { font-size:12.5px; color:#8C3A2E; line-height:1.6; }
+  .stat { display:flex; margin-top:10px; }
+  .stat .c { flex:1; text-align:center; padding:4px 6px; }
+  .stat .c + .c { border-left:1px dashed #DDD3C0; }
+  .stat .v { font-size:19px; font-weight:800; color:#B45309; }
+  .stat .k { font-size:11px; color:#8A8270; margin-top:1px; }
 </style></head>
 <body><div class="wrap">
 <div class="kicker">机器人公司作战图 · 执行层</div>
@@ -74,9 +86,13 @@
   <div class="card"><h4>事件流 · 最近 15 条</h4><div class="muted">暂无事件</div></div>
   <div class="card"><h4>学习提案（持续学习的原料）</h4><div class="muted">暂无——每次复盘至少提炼一条，进化才有时有料</div></div>
 </div>
+<div class="duo" style="margin-top:14px">
+  <div class="card"><h4>外部信号账本 · 供应链 / 竞品 / 政策 / 技术</h4><div class="muted">暂无信号——每日心跳会按当前阶段扫描供应链/竞品/政策情报</div></div>
+  <div class="card"><h4>系统体检 · playbook 自检</h4><div class="muted">尚未体检——运行 evolve.py verify / tick</div><div class="stat"><div class="c"><div class="v">0/9</div><div class="k">已过门</div></div><div class="c"><div class="v">0</div><div class="k">未过门</div></div><div class="c"><div class="v">—</div><div class="k">平均过门偏差(周)</div></div><div class="c"><div class="v">—</div><div class="k">提案应用率</div></div><div class="c"><div class="v">0</div><div class="k">外部信号</div></div></div></div>
+</div>
 <h3>playbook 变更日志 · 流程图为什么长这样</h3>
 <div class="card"><div class="cl"><div>· <b>v1.0.0</b>（2026-09-15）初版固化：从作战执行流程图精细版转录为机器可读手册（7 阶段 · 9 道验收门 · 6 条护栏 · 章鱼侧线）</div></div></div>
 <div class="band" style="margin-top:16px"><span class="h" style="color:#A03A2A">全程护栏</span>安全层四件套：唯一总线写句柄 · NaN 拒绝 · 行程钳位 · 跌倒软着陆 ｜ 认证：UN38.3 · 3C · FCC·CE（预算合计 ¥150–400k【估】） ｜ A/B 双分区 OTA ＋ minisign 签名（自研四件套 1–2 人月 · 云成本 ≈0） ｜ 零位标定 · 配对 PIN · 设备身份派生 · 整机老化（工厂化软件工序） ｜ 财务两把锁：W1 锁目标成本 · W18 复盘对账（核算 ±10%） ｜ 长周期料 W1 下单：模具（推迟至锁量后）· ToF · 舵机量产（各 8–12 周）</div>
 <div class="band"><span class="h">关键锚点</span>首批交付: ≈W22–24（6 个月内） ｜ 章鱼线首批: ≈W30 ｜ 小批BOM: ¥2,000–2,400/台 ｜ 预售毛利: 30–40% ｜ 速通NRE: ≈¥110–160 万（人力 ¥75–100 万 ＋ 现金 ¥25–55 万） ｜ 回本量: 1,000–1,500 台 ｜ 预售锚点: $399 ≈ ¥3,500 到手 ｜ 硬模: ¥50–80k/副 · 25–35 天（改模 12–15 天） ｜ 复模: ~500 元/模 ｜ 训练算力: 单卡 4090 · 1–2h/策略</div>
-<div class="foot">生成于 2026-09-15 11:48:00 ｜ 每次执行/复盘命令自动刷新 ｜ 每周一 09:00 自动化复盘进化</div>
+<div class="foot">生成于 2026-09-15 17:33:50 ｜ 每次执行/复盘命令自动刷新 ｜ 每周一 09:00 自动化复盘进化</div>
 </div></body></html>
