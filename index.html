@@ -267,6 +267,33 @@
 <section id="s2">
 <h2><span class="no">§2</span>初代速通线：3–6 个月<span class="hint">双足桌面机 24 周先行 · 章鱼 +8 周错峰</span></h2>
 
+<h3>R1 目标规格卡 · v0 基准<span style="font-weight:400;color:#6F6754;font-size:12.5px">（W1 用 BOM 账本+datasheet 复核后冻结；本卡为作战基线）</span></h3>
+<div class="grid2">
+<div class="tbl"><div class="cap">整机规格 · 造什么先说清楚<span class="src">【仓】构型基准 ＋【估】待冻结项</span></div>
+<table>
+<thead><tr><th style="width:110px">项</th><th>v0 读数</th></tr></thead>
+<tbody>
+<tr><td class="hl">构型基准</td><td>双足桌面级，复刻 Microduck 构型起步（25cm / 770g / 15 DoF【仓】），国产执行器一换</td></tr>
+<tr><td class="hl">DoF 分布【估】</td><td>腿 5×2（髋偏航/髋俯仰/髋侧摆/膝/踝俯仰）＋头 2（pan/tilt）＋腰 1＋表情 2＝15；分配可调，总数 15 不加</td></tr>
+<tr><td class="hl">扭矩预算【估】</td><td>踝关节静力矩 ≈ m·g·ℓ ≈ 0.8kg×9.8×0.05m ≈ 0.4 N·m，动态 ×2 → 需求 ≤0.8 N·m；STS3215 级堵转 ~19 kg·cm ≈ 1.9 N·m → <b class="good">余量 ≥2.3×</b>（datasheet 数值 W1 入账本）</td></tr>
+<tr><td class="hl">运动指标</td><td>行走 0.2–0.3 m/s、摔倒自恢复（软着陆）；使用域=桌面 30cm 高度跌落无损</td></tr>
+<tr><td class="hl">传感清单</td><td>6 轴 IMU×2（躯干＋骨盆差分）· ToF VL53L8CX（8×8）· 5MP CSI 摄像头 · MEMS 麦×2＋1W 喇叭；<b>跌倒检测=IMU 自由落体判据，零额外硬件</b></td></tr>
+<tr><td class="hl">交互</td><td>无屏开局：1 实体键＋RGB 灯环＋提示音；App=设备自 serve 单文件 Web，零安装【仓】</td></tr>
+<tr><td class="hl">算力/无线</td><td>RK3566（0.8 TOPS NPU；实测 50Hz 控制＋ONNX＋图传【仓】）· WiFi6/BLE 认证模组借证</td></tr>
+</tbody></table></div>
+<div>
+<div class="tbl"><div class="cap">功耗与续航预算【估】</div>
+<table>
+<thead><tr><th>状态</th><th>整机功耗</th><th>2S 2200mAh（16.3Wh）续航</th></tr></thead>
+<tbody>
+<tr><td class="hl">行走</td><td class="num">≈13W（SBC 2W＋舵机 ~10W＋传感 1W）</td><td class="num">≈60–90 min</td></tr>
+<tr><td class="hl">静坐/待机</td><td class="num">≈4.5W（舵机保持电流为主）</td><td class="num">≈3–4h</td></tr>
+<tr><td class="hl">充电</td><td class="num">2A → ≈1.5h 满充</td><td>—</td></tr>
+</tbody></table></div>
+<div class="strip">规格纪律：<b>每加 1 DoF = BOM +¥60–180 ＋ 训练复杂度降一档 ＋ 多一个返修点</b>（表 3 判据）；表情 DoF 只准出现在「传播视频前 3 秒」里才配存在。规格卡冻结前不许下单任何定制件。</div>
+</div>
+</div>
+
 <div class="tbl"><div class="cap">底气清单 · 逐条有出处</div>
 <table>
 <thead><tr><th style="width:36px">#</th><th>底气</th><th style="width:330px">出处</th></tr></thead>
@@ -388,6 +415,60 @@
 </tbody></table></div>
 </div>
 </div>
+
+<div class="tbl" style="margin-top:14px"><div class="cap">BOM 拆账 · 行项级三点锚定（100 / 1k / 10k 台）<span class="src">【账】＋【估】行项口径 · 与速通账总数对拍见末行</span></div>
+<table>
+<thead><tr><th>行项</th><th style="width:120px">@100 台</th><th style="width:110px">@1k 台</th><th style="width:110px">@10k 台</th><th>说明</th></tr></thead>
+<tbody>
+<tr><td class="hl">串行舵机 ×15</td><td class="num">¥1,200（¥80/个）</td><td class="num">¥1,170（¥78）</td><td class="num">¥975（¥65）</td><td>双源到货分档筛选；<b>占整机 ~54–56%</b>，与表 11c「量产档 55–60%」对齐</td></tr>
+<tr><td class="hl">主控</td><td class="num">¥260（Radxa Zero 3W）</td><td class="num">¥260</td><td class="num">¥300（自研私板）</td><td>样机 SBC → 量产私板砍无用接口（¥250–400@10k【账】）</td></tr>
+<tr><td class="hl">IMU 6 轴 ×2</td><td class="num">¥40</td><td class="num">¥38</td><td class="num">¥30</td><td>躯干＋骨盆差分</td></tr>
+<tr><td class="hl">ToF</td><td class="num">¥80</td><td class="num">¥72</td><td class="num">¥60</td><td>VL53L8CX，ST 单源，<b>W1 下单</b>（长周期三件事之一）</td></tr>
+<tr><td class="hl">摄像头（CSI 5MP）</td><td class="num">¥45</td><td class="num">¥40</td><td class="num">¥35</td><td>—</td></tr>
+<tr><td class="hl">音频（麦×2＋功放＋喇叭）</td><td class="num">¥90</td><td class="num">¥85</td><td class="num">¥80</td><td>R1 仅提示音，<b>链路为 R2 语音预留</b></td></tr>
+<tr><td class="hl">电池 pack 2S 2200</td><td class="num">¥55</td><td class="num">¥50</td><td class="num">¥45</td><td>NP-F550 型现货带 UN38.3【账】</td></tr>
+<tr><td class="hl">电源/充电管理</td><td class="num">¥35</td><td class="num">¥32</td><td class="num">¥28</td><td>浪涌预算按撞墙清单墙 3（堵转×数量×安全系数）</td></tr>
+<tr><td class="hl">主板 PCBA（4 层＋贴装）</td><td class="num">¥150</td><td class="num">¥120</td><td class="num">¥85</td><td>快板 72h → 量产厂</td></tr>
+<tr><td class="hl">结构（打印→复模→注塑）</td><td class="num">¥180</td><td class="num">¥160</td><td class="num">¥95</td><td>复模出收缩补偿模型；@10k 注塑摊模</td></tr>
+<tr><td class="hl">线束/紧固/脚垫</td><td class="num">¥45</td><td class="num">¥40</td><td class="num">¥35</td><td>脚垫=消耗品，随机附易损包</td></tr>
+<tr><td class="hl">包装/说明书</td><td class="num">¥35</td><td class="num">¥30</td><td class="num">¥28</td><td>成人向证据链文案（防儿童误判）</td></tr>
+<tr><td class="hl">合计</td><td class="num hl">≈¥2,215</td><td class="num hl">≈¥2,100</td><td class="num hl">≈¥1,790</td><td>对拍：小批落账本「¥2,000–2,400」✓ · 10k 落「¥1,600–2,600 含摊销」✓</td></tr>
+</tbody></table></div>
+
+<div class="grid2" style="margin-top:14px">
+<div>
+<div class="tbl"><div class="cap">众筹作战卡 · 「上线锁量 ≥1,000 台」怎么锁</div>
+<table>
+<thead><tr><th style="width:110px">档位</th><th style="width:110px">定价</th><th>配置与目的</th></tr></thead>
+<tbody>
+<tr><td class="hl">早鸟限定</td><td class="num">¥2,699（限 300）</td><td>标准配置＋创始编号＋专属皮肤；24h 冲量造势（同类 24h 6,500 台的节奏打法【仓】）</td></tr>
+<tr><td class="hl">标准版</td><td class="num">¥3,499</td><td>主力走量档，回本账按此档为锚</td></tr>
+<tr><td class="hl">开发者版</td><td class="num">¥4,999</td><td>裸结构＋SDK 全开＋备用舵机×2＋双电池；吃下极客人群＝UGC 内容源</td></tr>
+<tr><td class="hl">配件包</td><td class="num">¥199</td><td>足垫/齿轮组/皮肤贴装；售后耗材前置＋提客单</td></tr>
+</tbody></table>
+<div class="strip">早鸟折让摊薄总均价 ≈<b>−¥25/台</b> → 回本台数 +4%（§5 计算器自测可证，不推翻账）。</div>
+</div>
+<div class="tbl" style="margin-top:12px"><div class="cap">内容与素材 · 转化 80% 在视频＋前 10 图【估】</div>
+<table>
+<thead><tr><th style="width:130px">件</th><th>结构</th></tr></thead>
+<tbody>
+<tr><td class="hl">主视频 90s 六段</td><td>3s 萌点 hook（摔倒自己爬起）→ 15s 愿景 → 30s 五镜头功能（走/爬起/踢球/拾取/避障）→ 20s 技术差异（RL 策略·数据不出户·开源生态）→ 15s 路线图与团队 → CTA</td></tr>
+<tr><td class="hl">前 10 图顺序</td><td>场景萌图 → 规格一图流（§2 规格卡直接出）→ 竞品对比表 → 结构爆炸图 → 开发生态 → 认证承诺 → <b>履约计划公示</b> → 团队 → FAQ → 风险声明</td></tr>
+<tr><td class="hl">更新节奏</td><td>上线期每周 1 更（进度＋新镜头）；延期风险前置说——众筹页的诚实度本身就是转化率</td></tr>
+</tbody></table></div>
+</div>
+<div class="tbl"><div class="cap">卖给谁 × 留住谁 · 四人群象限</div>
+<table>
+<thead><tr><th style="width:104px">人群</th><th>动机</th><th style="width:84px">愿付【估】</th><th>首发钩子</th><th>留存钩子</th></tr></thead>
+<tbody>
+<tr><td class="hl">极客/开发者</td><td>可编程、开源生态、可折腾</td><td class="num">¥3–5k</td><td>开发者版＋SDK＋社区赛</td><td>动作/模型商店、月度新策略、技能大赛</td></tr>
+<tr class="hl-row"><td class="hl">桌宠/情感陪伴</td><td>萌点、人格化、桌面生命感</td><td class="num">¥1.5–3k</td><td>表情/声音人格 IP 锚</td><td>每周新动作包、节日彩蛋、成长系统</td></tr>
+<tr><td class="hl">家长/教育</td><td>STEAM 编程启蒙</td><td class="num">¥2–4k</td><td>图形化编程＋课程表</td><td>课程季度更新、亲子任务</td></tr>
+<tr><td class="hl">礼品/猎奇</td><td>新奇、开箱传播</td><td class="num">¥2–3k</td><td>开箱即传播的设计</td><td>低复购→靠转介绍二次触达</td></tr>
+</tbody></table>
+<div class="strip">首发主打<b>「开发者＋桌宠」双人群</b>：开发者供内容与口碑，桌宠供量与情感溢价，教育/礼品自然外溢。留存本质=对抗吃灰曲线——<b>内容更新日历是 R1 就要排的产线</b>（新动作包走模型 OTA 独立线分发，§3 抓手②）：桌面上「每周有新东西」比多两个 DoF 更值钱。</div>
+</div>
+</div>
 </section>
 
 <!-- ═══════════ §3 世代衔接 ═══════════ -->
@@ -455,6 +536,36 @@
 <tr><td class="hl">本地化私人化</td><td>数据本地存储优先，OTA 全签名私有通道，无强制云依赖</td><td>全离线可用模式；家庭数据不出户作为产品承诺</td><td>家庭私有习惯库：谁在家、谁教它，数据归谁</td></tr>
 <tr><td class="hl">个人端定制</td><td>皮肤/动作包可换；IP 锚统一</td><td>用户自训练动作并社区分享（模型 OTA 独立线承载分发）</td><td class="hl">千人千面：每台机器人的策略随主人进化，「我的机器人」而非「一台机器人」</td></tr>
 </tbody></table></div>
+</div>
+</div>
+
+<div class="grid2" style="margin-top:12px">
+<div class="tbl"><div class="cap">端侧算力能力边界 · R2「本地小模型上机」到底能跑什么<span class="src">【估】RK3566 0.8 TOPS / RK3588S 级 6 TOPS 口径</span></div>
+<table>
+<thead><tr><th>能力</th><th style="width:170px">RK3566（0.8 TOPS）</th><th style="width:140px">RK3588S 级（6 TOPS）</th><th>结论</th></tr></thead>
+<tbody>
+<tr><td class="hl">唤醒词</td><td class="good">✓ KB 级模型，&lt;5% CPU</td><td class="good">✓</td><td>R1 的音频链路（BOM 已列 ¥90）就是为这一步预留</td></tr>
+<tr><td class="hl">指令级 ASR</td><td>△ int8 流式：关键词级可用，整句转写吃力</td><td class="good">✓ 离线整句</td><td>R2 门槛能力，决定语音人格成色</td></tr>
+<tr><td class="hl">意图分类</td><td class="good">✓ BERT-tiny int8 毫秒级</td><td class="good">✓</td><td>本地意图够用，<b>不必为此上云</b>——守住数据不出户承诺</td></tr>
+<tr><td class="hl">视觉检测</td><td>△ YOLO-nano @320px ~5fps</td><td class="good">✓ 15–30fps</td><td>仅在隐私白名单场景启用</td></tr>
+<tr><td class="hl">VLA 端到端</td><td class="bad">✗</td><td class="bad">✗（需外挂或云）</td><td>R3 战略储备，<b>不做端侧幻想</b></td></tr>
+<tr><td class="hl">R2 算力决策</td><td>沿用 RK3566：AI=唤醒＋意图＋个性化动作</td><td>升级：＋实时视觉交互，BOM +¥100–150</td><td class="hl">W13 章鱼立项时一并拍板</td></tr>
+</tbody></table>
+<div class="strip">判读：<b>R2 不必换主控</b>——唤醒＋意图＋个性化动作在 0.8 TOPS 内有解；换 6 TOPS 的唯一理由是「实时视觉交互」，那是 R2.5 的决定，不是 R2 的。</div>
+</div>
+
+<div class="tbl"><div class="cap">数据协议 v1 · 「数据滚雪球」的地基，R1 就要埋<span class="src">【估】事件 schema 首版</span></div>
+<table>
+<thead><tr><th style="width:120px">事件类型</th><th>采集字段</th><th>R2 训练资产用途</th></tr></thead>
+<tbody>
+<tr><td class="hl">fall_detected</td><td>前后 3s IMU＋关节位置/电流摘要、地面类型猜测</td><td>摔倒恢复策略的真机分布</td></tr>
+<tr><td class="hl">manual_nudge</td><td>用户手扶/挪动时刻与方向</td><td>交互意图与安全边界</td></tr>
+<tr><td class="hl">voice_cmd</td><td>文本指令（本地 ASR）、触发时段</td><td>R2 意图模型语料——文本可本地训，不必上传</td></tr>
+<tr><td class="hl">skill_play</td><td>动作包 ID、完成度、重播率</td><td>内容运营与推荐</td></tr>
+<tr><td class="hl">ota_result</td><td>版本/成败/回滚原因</td><td>质量回灌</td></tr>
+<tr><td class="hl">daily_usage</td><td>时长/场景计数（无影像）</td><td>留存与吃灰曲线监控（喂 §2 留存钩子）</td></tr>
+</tbody></table>
+<div class="strip">存储与授权：本地 ring buffer 30 天滚动；<b>原始影像/音频永不离开设备</b>；上传需用户显式点「导出」→ 本地匿名化（去标识＋聚合）→ 只出结构化事件；白名单逐项可关，物理麦克风开关保留——把「数据不出户」做成<b>可审计的工程承诺</b>，不是口号。</div>
 </div>
 </div>
 
@@ -607,6 +718,31 @@
 </div>
 </div>
 
+<h3>表 6a · RL 管线工程参数——速通线直接复用本机管线，参数先摆桌上</h3>
+<div class="grid2" style="margin-top:10px">
+<div class="tbl"><div class="cap">观测/动作/超参<span class="src">【仓】本机 rl-experiments 为准 ＋【估】示意基线</span></div>
+<table>
+<thead><tr><th style="width:130px">项</th><th>读数</th></tr></thead>
+<tbody>
+<tr><td class="hl">观测空间</td><td class="num">≈65 维：关节位置 15＋关节速度 15＋IMU 6＋上步动作 15＋速度指令 3＋附加项（以管线实际为准）</td></tr>
+<tr><td class="hl">动作空间</td><td class="num">15 维位置目标 @50Hz；观测历史窗口 3–5 拍补偿总线轮询延迟（撞墙清单墙 2 的解法）</td></tr>
+<tr><td class="hl">PPO 超参【估】</td><td class="num">lr 3e-4 自适应 · γ 0.99 · λ 0.95 · clip 0.2 · ~2e3 迭代；单 4090 1–2h/策略（页内已证）</td></tr>
+<tr><td class="hl">课程学习</td><td>先站后走：站立存活 → 原地踏步 → 定速行走 → 转向 → 摔倒恢复（最后一课=最卖钱的一课）</td></tr>
+</tbody></table></div>
+<div>
+<div class="tbl"><div class="cap">奖励函数与域随机化</div>
+<table>
+<thead><tr><th style="width:150px">项</th><th>组成</th></tr></thead>
+<tbody>
+<tr><td class="hl">奖励六项【估】</td><td class="num">速度跟踪 1.0 · 存活 0.5 · 姿态正则 0.2 · 动作平滑 0.1 · 能耗 0.05 · 目标高度 0.2（权重示意；防 reward hacking=逐项消融）</td></tr>
+<tr><td class="hl">域随机化八项【估】</td><td class="num">质量 ±10% · 质心 ±2cm · 关节延迟 0–30ms · 死区 ±2° · 齿隙 ~0.5° · 地面摩擦 0.4–1.2 · 外力扰动 ±5N · 地形起伏 0–15mm</td></tr>
+<tr><td class="hl">sim2real 台架</td><td>单关节阶跃响应实录延迟/死区/转速 → 参数回填仿真再训（墙 1 的落地动作，W3–8 与手板并行）</td></tr>
+<tr><td class="hl">仿真回归门</td><td>G1 判据量化：<b>100 个随机初始状态存活率 ≥95% ＋ 1 万步无发散</b>——门禁必须可自动执行，不许「看着还行」</td></tr>
+</tbody></table></div>
+</div>
+</div>
+<div class="strip" style="margin-top:10px"><b>安全层落位</b>：四件套各有归所——唯一总线写句柄=Rust 守护进程单点 · NaN/超温拒绝=总线协议层 · 行程钳位=每关节限位表 · 跌倒软着陆=IMU 自由落体触发 0.2s 内收腿序列＋总线只读。<b>安全层永远不走 RL，永远确定性代码。</b></div>
+
 <h3 id="d6">表 8 · D6 OTA/升级推送域——防砖是硬约束，不是特性</h3>
 <div class="grid2" style="margin-top:10px">
 <div class="tbl"><div class="cap">方案选项</div>
@@ -644,6 +780,36 @@
 <tr><td class="hl">RFQ/商务</td><td>年需求量是报价第一变量（1k/10k/100k 差 20–40%）；MOQ/账期/模具归属决定能否随时转厂</td></tr>
 <tr><td class="hl">品质链</td><td>SPI→AOI→X-Ray→ICT→FCT 五道检测分工；IQC/IPQC/OQC/ORT；异常走 8D（围堵 24h）；RMA 按失效模式回灌研发 DFR</td></tr>
 </tbody></table></div>
+
+<div class="grid2" style="margin-top:12px">
+<div class="tbl"><div class="cap">表 9c · 产线核心工位 SOP——R1 五工位，FPY 从这里来<span class="src">【估】节拍按 1k 台口径</span></div>
+<table>
+<thead><tr><th style="width:118px">工位</th><th style="width:104px">节拍</th><th>动作</th><th>退出判据</th></tr></thead>
+<tbody>
+<tr><td class="hl">① 配对建档</td><td class="num">2 min/台</td><td>主板-舵机 PID 绑定；批次号＋SN 写出厂档案</td><td>三码齐全</td></tr>
+<tr><td class="hl">② 零位标定</td><td class="num">5 min/台</td><td>治具夹机械零位 → EEPROM 写偏移 → 回读校验</td><td>偏差 ≤±0.5°</td></tr>
+<tr><td class="hl">③ 老化烧机</td><td class="num bad">24h/台（瓶颈）</td><td>循环工况（站→走 30s→蹲→抖动），全程录电流曲线</td><td>曲线无异常峰、温升 ≤限值</td></tr>
+<tr><td class="hl">④ EOL 综合</td><td class="num">8 min/台</td><td>ToF 标准板 / 色卡 / 按键 / WiFi 灵敏度 / 跌倒自检</td><td>全项 PASS</td></tr>
+<tr><td class="hl">⑤ 包装抽检</td><td class="num">1 min/台</td><td>配件齐套＋外观＋首台全检</td><td>齐套率 100%</td></tr>
+</tbody></table>
+<div class="strip">FPY 分层到工位：整机 ≥90% 是 G3 门禁，工位级目标 ②③ ≥98%、④ ≥95%；不合格流回对应工位不混线。<b>治具 W10 就 3D 打印自做</b>——等外购必延期（撞墙清单：产线工装临时凑=首批必延期）。</div>
+</div>
+
+<div class="tbl"><div class="cap">表 9d · 可靠性测试矩阵——G3（模具前）必须闭环</div>
+<table>
+<thead><tr><th style="width:118px">项</th><th>条件</th><th>判据</th></tr></thead>
+<tbody>
+<tr><td class="hl">跌落</td><td>桌高 75cm 六面 ×3（桌面场景=75cm 是常态不是意外）</td><td>功能正常、无结构件断裂</td></tr>
+<tr><td class="hl">摔倒寿命</td><td class="num">训练级摔机 500 次</td><td>舵机齿轮箱无跳齿、脚垫无脱落</td></tr>
+<tr><td class="hl">按键/接口</td><td class="num">插拔 5,000 次</td><td>接触阻抗漂移 &lt;20%</td></tr>
+<tr><td class="hl">续航循环</td><td class="num">200 次满充放</td><td>容量衰减 &lt;15%</td></tr>
+<tr><td class="hl">高温加速</td><td class="num">45°C 连续 100h</td><td>无死机、舵机温升 ≤规格</td></tr>
+<tr><td class="hl">存运环境</td><td class="num">−20°C ~ 60°C 存放 48h 后恢复</td><td>上电自检 PASS</td></tr>
+<tr><td class="hl">EMC 预扫</td><td>辐射＋传导初测（认证前自证）</td><td>超标整改后再送认证——省一轮重测费与 2–4 周【估】</td></tr>
+</tbody></table>
+<div class="strip">顺序纪律：可靠性在<b>模具前</b>完成（与表 3 DFM 同理）——模具后才发现结构强度问题=改模 12–15 天＋¥30–50k。</div>
+</div>
+</div>
 
 <h3 id="d10">表 10 · 委托加工光谱：四开发模式对比</h3>
 <div class="tbl"><div class="cap">四模式对比</div>
@@ -817,9 +983,10 @@
 </script>
 
 <div class="foot">
-  <span>机器人公司全景 · 作战版 v2.3 · 高密度速查页 · 更新 2026-09-16</span>
+  <span>机器人公司全景 · 作战版 v2.4 · 高密度速查页 · 更新 2026-09-16</span>
   <span>数据图例：【仓】Microduck 源码仓实测 ｜【账】本机 BOM 账本 ｜【官】官方报价页 ｜【估】行业估算区间 ｜【算】成本引擎口径</span>
   <span>金额为 2025–2026 珠三角口径，人月 ¥45k</span>
+  <span>v2.4 变更：内容扩写——整机规格卡 v0 · BOM 行项三点拆账 · 众筹作战卡与四人群象限 · 端侧算力能力边界 · 数据协议 v1 · RL 管线工程参数 · 产线五工位 SOP · 可靠性测试矩阵</span>
   <span>完整推导备索：全景表格版 · 撞墙清单（20 项风险登记册全文）</span>
 </div>
 
