@@ -394,27 +394,44 @@
 </tbody></table></div>
 
 <div>
-<div class="tbl wrap1"><div class="cap">本周就开跑 · T0 清单</div>
+<div class="tbl wrap1"><div class="cap">本周就开跑 · T0 清单<span class="src">每行=动作 → 产出物（验收判据）→ 花费；两周硬支出 ≈¥5,000</span></div>
 <table>
-<thead><tr><th style="width:110px">时点</th><th>动作</th></tr></thead>
+<thead><tr><th style="width:92px">时点</th><th>动作 → 产出物（验收判据）</th><th style="width:104px">花费【估】</th></tr></thead>
 <tbody>
-<tr><td class="hl">今天</td><td>建 git 仓库；复制本机 BOM 账本为 v1；写完 1 页 PRD（一句话：给谁、解决什么、¥XXX、几个 DoF）</td></tr>
-<tr><td class="hl">本周</td><td>下单 15 颗 Feetech STS3215 样品（现货）；跑通官方 rl-src 的 MuJoCo 仿真（本机已有 5 策略可直接迁移训练）；ToF/摄像头交期询价；快板厂开户</td></tr>
-<tr><td class="hl">两周内</td><td>第一支仿真行走视频；PCBA v1 下单；手板第一轮打印件上机</td></tr>
-<tr><td class="hl">本周·章鱼线<span class="tag teal">只做纸面</span></td><td>把本机方案库八足方案浓缩成 1 页概念 PRD（形态/DoF/探索任务清单），W9 预研评审用——不投硬件资源，避免双线抢料</td></tr>
-</tbody></table></div>
-
-<div class="tbl" style="margin-top:12px"><div class="cap">速通账 · 钱<span class="src">【账】+【估】</span></div>
-<table>
-<thead><tr><th style="width:150px">项</th><th>读数</th></tr></thead>
-<tbody>
-<tr><td class="hl">预售锚点</td><td class="num hl">国内锚 ¥3,499 · 海外锚 $399（同类官方口径【账】；首期国内众筹起步，出海放二代——海外收款主体/CE/FCC 是硬门槛，见 §5）</td></tr>
-<tr><td class="hl">小批 BOM</td><td class="num">≈¥2,000–2,400/台（国产舵机×15 @¥80+其余复刻结构）→ BOM 毛利 <b class="good">≈31–43%</b>（到手价−BOM）；套 L2 全口径（FPY/平台费/物流/RMA）<b>≈15–30%</b>【估】</td></tr>
-<tr><td class="hl">速通 NRE</td><td class="num">3–4 人×5.5 月人力 ≈¥75–100 万 ＋ 现金（复模/认证/手板/工装）≈¥25–55 万 → <b>合计 ≈¥110–160 万【估】</b></td></tr>
-<tr><td class="hl">回本</td><td class="num">BOM 口径毛利 ¥1,100–1,500/台 → <b class="good">1,000–1,500 台回本</b>；L2 全口径（中性：平台费 6%/物流 ¥60/FPY 92%/RMA 3.5%）≈¥650/台 → <b>≈2,000 台回本</b>【估】，自测见 §5 计算器；对照 10k 台口径：BOM ≈¥1,600–2,600（含摊销）、$399 下毛利 25–40 点、NRE 回收 ≈2,700 台【账】</td></tr>
-<tr><td class="hl">章鱼线边际账</td><td class="num">复用 R1 平台后，增量 NRE ≈<b>+¥30–60 万【估】</b>（新结构手板/复模+步态 RL 换构型调参）；认证与产线从零建设成本全部免掉</td></tr>
-</tbody></table></div>
+<tr><td class="hl">今天</td><td>建 git 仓库（bom / prd / rl / supplier / customers 五目录）→ repo 可克隆</td><td class="num">¥0</td></tr>
+<tr><td class="hl">今天</td><td>BOM 账本 v1：本机账本逐行补「价格 / 交期 / 双源」三列 → 每行有价有交期，缺项标红</td><td class="num">¥0</td></tr>
+<tr><td class="hl">今天</td><td>1 页 PRD 定稿：§2 规格卡 v0 转正；一句话=给谁 / 解决什么 / ¥3,499 / 15 DoF → 自评审通过</td><td class="num">¥0</td></tr>
+<tr><td class="hl">今天 <span class="tag teal">业务轨</span></td><td>种子客户名单建档 10 家（实验室 2 / KOL 3 / 职教 2 / 机构 3，五要素表=表 6-3）→ 前 3 家有联系人实名</td><td class="num">¥0</td></tr>
+<tr><td class="hl">本周</td><td>下单 15＋2 颗 STS3215 样品 → 到货逐颗上台架录阶跃响应，参数入账本</td><td class="num">≈¥1,400</td></tr>
+<tr><td class="hl">本周</td><td>跑通官方 rl-src 的 MuJoCo 仿真（本机 5 策略迁移基线）→ 30s 仿真行走视频</td><td class="num">¥0</td></tr>
+<tr><td class="hl">本周</td><td>长周期件询价：ToF / 摄像头 / 电池，各询 2 家 → 报价与交期入账本，&gt;12 周标红</td><td class="num">¥0</td></tr>
+<tr><td class="hl">本周</td><td>快板厂开户＋复模厂档期摸底 → 最早可排产时间记录在案</td><td class="num">¥0</td></tr>
+<tr><td class="hl">本周 <span class="tag teal">业务轨</span></td><td>买 1 台 Bittle X 作对标机 → 拆解 BOM 反推＋五项基准测试方法建档（表 6-5）</td><td class="num">≈¥2,300</td></tr>
+<tr><td class="hl">本周 <span class="tag teal">业务轨</span></td><td>拜访种子客户前 2 家（母校实验室）→ 试用意向与窗口期记录在案</td><td class="num">差旅另计</td></tr>
+<tr><td class="hl">两周内</td><td>仿真行走视频出街＋种子客户群建群 → 视频公开，群内 ≥10 人</td><td class="num">¥0</td></tr>
+<tr><td class="hl">两周内</td><td>PCBA v1 下单（4 层 × 3 片，72h 快板）→ 下单回执，一次点亮判据预立（表 11b ≥70%）</td><td class="num">≈¥800–1,200</td></tr>
+<tr><td class="hl">两周内</td><td>手板第一轮 20 类 34 件打印上机 → 整机假装配完成，干涉清单出</td><td class="num">≈¥300</td></tr>
+<tr><td class="hl">两周内·章鱼线<span class="tag teal">只做纸面</span></td><td>八足方案浓缩 1 页概念 PRD（形态 / DoF / 探索任务清单）→ 作为 W9 预研评审输入</td><td class="num">¥0</td></tr>
+</tbody></table>
+<div class="strip">T0 两周硬支出 ≈¥5,000——<b>开跑不烧钱</b>，烧钱从 W3 手板/PCBA 迭代才开始（§5 现金轴）。带「业务轨」标签的三行与硬件轨并行、互不阻塞：没有种子客户名单，24 周做完也只是造了台漂亮的样机。</div>
 </div>
+</div>
+</div>
+
+<div class="tbl" style="margin-top:14px"><div class="cap">速通账 · 三笔账各答一问，勿混用<span class="src">【账】＋【估】</span></div>
+<table>
+<thead><tr><th style="width:158px">项</th><th>读数</th><th style="width:320px">口径 / 备注</th></tr></thead>
+<tbody>
+<tr><td class="hl">定价锚</td><td class="num hl">国内 ¥3,499 · 海外 $399 · 教育版 ¥3,999（整机＋课程首年）</td><td>教育版对标 TonyPi ¥3,999（表 6-2）；首期国内起步，出海放二代——海外收款主体/CE/FCC 硬门槛（§5）</td></tr>
+<tr><td class="hl">小批 BOM</td><td class="num">≈¥2,000–2,400/台</td><td>行项级三点拆账见下表【账】</td></tr>
+<tr><td class="hl">毛利 · 两个口径</td><td class="num">BOM 毛利 <b class="good">≈31–43%</b>（答：造一台赚多少）；L2 全口径中性 <b>≈¥650/台 ≈19%</b>（答：卖多少台回本）</td><td>全口径=平台费 6% / 物流 ¥60 / FPY 92% / RMA 3.5%；拖动自测见 §5 计算器</td></tr>
+<tr><td class="hl">NRE · 人力</td><td class="num">≈¥75–100 万（3–4 人 × 5.5 月）</td><td>角色：结构 1 / 电子 1 / RL 1 / 供应链兼 PM 0.5；人月 ¥45k【估】</td></tr>
+<tr><td class="hl">NRE · 现金</td><td class="num">≈¥25–55 万（复模/认证/手板/工装）</td><td>【账】</td></tr>
+<tr><td class="hl">NRE · 合计</td><td class="num hl">≈¥110–160 万（R1 单线）</td><td>章鱼线边际 <b>+¥30–60 万</b>【估】（复用平台，认证与产线零建设）</td></tr>
+<tr><td class="hl">回本台数</td><td class="num"><b class="good">L2 全口径 ≈2,000 台</b>（BOM 口径 1,000–1,500 台）</td><td>10k 台对照：BOM ≈¥1,600–2,600 含摊销、NRE 回收 ≈2,700 台【账】</td></tr>
+<tr><td class="hl">B2B 种子期账 · 真实轨【估】</td><td class="num">首年 10 家 × 均 5 台 × ¥3,999 ≈ <b>¥20 万</b> ＋ 课程年费 ≈¥3 万 → <b class="bad">不回 NRE</b></td><td>真实作用=验证需求＋磨产线＋把月烧钱率多撑 1–2 个月（§6 表 6-3 名单制）——「真实业务先跑通」的现金含义就在这一行</td></tr>
+</tbody></table>
+<div class="strip">读账顺序：<b>B2B 种子账先成立（有人真买、真回头）→ 24 周速通的「≈2,000 台回本」才有意义</b>；反过来先押 2,000 台、再找客户，就是把众筹当起点——§6 否掉的就是这条路。峰值现金缺口与放款节奏见 §5 表 R4。</div>
 </div>
 
 <div class="tbl" style="margin-top:14px"><div class="cap">BOM 拆账 · 行项级三点锚定（100 / 1k / 10k 台）<span class="src">【账】＋【估】行项口径 · 与速通账总数对拍见末行</span></div>
@@ -1070,9 +1087,10 @@
 </script>
 
 <div class="foot">
-  <span>机器人公司全景 · 作战版 v2.5 · 高密度速查页 · 更新 2026-09-16</span>
+  <span>机器人公司全景 · 作战版 v2.6 · 高密度速查页 · 更新 2026-09-16</span>
   <span>数据图例：【仓】Microduck 源码仓实测 ｜【账】本机 BOM 账本 ｜【官】官方报价页 ｜【估】行业估算区间 ｜【算】成本引擎口径</span>
   <span>金额为 2025–2026 珠三角口径，人月 ¥45k</span>
+  <span>v2.6 变更：重做 T0 清单（动作→产出物→验收判据→花费，14 行可执行，含业务轨三行）与速通账（三笔账一行一口径+口径列，新增 B2B 种子期真实轨账）</span>
   <span>v2.5 变更：新增 §6 真实业务系统——玩具/系统三判据 · AI 构想→真实业务改造对照 · 真实竞品地图（Bittle $319 / Go2 ¥9,997 起 / TonyPi ¥3,999，附来源链接）· 两条真实采购流与种子客户名单制 · 生产稳定性机制 · 五项可复现优势丈量</span>
   <span>v2.4 变更：内容扩写——整机规格卡 v0 · BOM 行项三点拆账 · 众筹作战卡与四人群象限 · 端侧算力能力边界 · 数据协议 v1 · RL 管线工程参数 · 产线五工位 SOP · 可靠性测试矩阵</span>
   <span>完整推导备索：全景表格版 · 撞墙清单（20 项风险登记册全文）</span>
