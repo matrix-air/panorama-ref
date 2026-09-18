@@ -262,6 +262,25 @@
 <tr><td class="num">4</td><td class="hl">认证走「通用消费电子」</td><td>萌系外观保留成人向证据链，防止被拉入儿童产品监管</td></tr>
 <tr><td class="num">5</td><td class="hl">升级路径清晰</td><td>舵机→无刷行星关节是 Gen2 单点升级，不动整机构型、不动软件架构</td></tr>
 </tbody></table></div>
+
+<div class="tbl" style="margin-top:12px"><div class="cap">Microduck 逆向精细 BOM · 唯一开源同类的部件级实证锚【仓】<span class="src">官方 BOM/PCB 不公开——本表由机载源码（model.rs 总线拓扑）＋训练仓全套 MJCF/STL 反推，2026-09 实拆；与 §2 R1 账本互为对拍</span></div>
+<table>
+<thead><tr><th>部件</th><th style="width:190px">型号（源码实证）</th><th style="width:40px">数量</th><th style="width:80px">复刻价</th><th style="width:92px">@10k 量产</th><th style="width:104px">交期</th><th>双源 / 风险</th></tr></thead>
+<tbody>
+<tr><td class="hl">串行总线舵机</td><td>Dynamixel XL330-M077-T（总线 ID 10–34）</td><td class="num">15</td><td class="num">¥2,700</td><td class="num">¥2,550</td><td class="num">零售现货 / 量产 8–12 周</td><td>韩国单源⚠️ → 国产 Feetech STS3215 替换（须重训策略）</td></tr>
+<tr><td class="hl">主控</td><td>Radxa Zero 3W（RK3566，50Hz 环＋ONNX＋图传）</td><td class="num">1</td><td class="num">¥150</td><td class="num">私板 ¥250–400</td><td class="num">现货 1–2 周</td><td>量产私板并吞 3 块自制板</td></tr>
+<tr><td class="hl">IMU 6 轴 ×2</td><td>LSM6DSV16X（1 颗伪装成总线 ID 200）</td><td class="num">2</td><td class="num">¥40</td><td class="num">¥36</td><td class="num">4–8 周</td><td>BMI270 / ICM-42688</td></tr>
+<tr><td class="hl">ToF</td><td>VL53L8CX（上电灌 ~90KB 固件）</td><td class="num">1</td><td class="num">¥80</td><td class="num">¥65</td><td class="num">8–12 周⚠️</td><td>ST 单源；VL53L5CX 兼容降级</td></tr>
+<tr><td class="hl">摄像头</td><td>CSI＋M12 镜头（29.3fps 硬编实测）</td><td class="num">1</td><td class="num">¥80</td><td class="num">¥60</td><td class="num">4–8 周</td><td>模组厂多源</td></tr>
+<tr><td class="hl">音频</td><td>TLV320AIC3104 codec＋麦＋喇叭</td><td class="num">1</td><td class="num">¥105</td><td class="num">¥82</td><td class="num">2–8 周</td><td>ES8388 类替代</td></tr>
+<tr><td class="hl">电池</td><td>NP-F550 型 2S（代码满 8.2V/空 6.6V 实锤）</td><td class="num">1</td><td class="num">¥60</td><td class="num">¥55</td><td class="num">现货 1–2 周</td><td>标准 pack 自带 UN38.3【账】</td></tr>
+<tr><td class="hl">自制 PCB ×3</td><td>IMU 转接 / 音频 HAT / 舵机转接</td><td class="num">3</td><td class="num">¥200</td><td class="num">并入私板</td><td class="num">打样 2 周</td><td>原理图不公开——逆向成本集中在板</td></tr>
+<tr><td class="hl">结构</td><td>20 类打印件（MJCF 全套 STL）</td><td class="num">1 套</td><td class="num">¥300</td><td class="num">¥60–95</td><td class="num">开模 8–12 周⚠️</td><td class="bad">CC BY-SA-NC 仅限非商业</td></tr>
+<tr><td class="hl">轴承/杂件</td><td>Seeed 薄壁轴承 22×16×4＋紧固/线束</td><td class="num">1 套</td><td class="num">¥60</td><td class="num">¥45</td><td class="num">现货</td><td>标准件</td></tr>
+<tr><td class="hl">合计</td><td>换国产执行器 → ≈¥2,625（−36%）</td><td class="num">—</td><td class="num hl">≈¥4,125</td><td class="num hl">≈¥3,000（原版件）</td><td class="num">—</td><td>四方案阶梯见下条</td></tr>
+</tbody></table>
+<div class="strip">读法三条：①执行器占复刻 BOM <b>65%</b>、换国产后 ~46%——「占 BOM 50–77%」两端各有了一个实锚；②长周期三件事（舵机量产/ToF/模具）全部 8–12 周，P2 就得下单；③<b>四方案阶梯</b>：A 原版复刻 ¥4,125·首台 4–8 周 → B 国产舵机 ¥2,625·6–10 周（须重建执行器模型重训）→ C 10k 量产自研 ≈¥1,605–2,580 含摊销·12–18 月 → D ODM 白牌 ¥300–800 出厂·3 个月——与 §2 速通账（@100 ≈¥2,215、@10k ≈¥1,790）同量级互证 ✓</div>
+</div>
 </section>
 
 <!-- ═══════════ §2 速通线 ═══════════ -->
